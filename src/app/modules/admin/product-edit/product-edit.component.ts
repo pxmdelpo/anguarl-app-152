@@ -19,8 +19,10 @@ export class ProductEditComponent implements OnInit {
 
   ngOnInit() {
     const id = parseInt(this.router.snapshot.params.id, 10);
-    this.product = this.produdctService.getProduct(id);
-    console.log(this.product);
+    this.produdctService.getProduct(id)
+      .subscribe((product: Product) => {
+        this.product = product;
+      });
   }
 
 }

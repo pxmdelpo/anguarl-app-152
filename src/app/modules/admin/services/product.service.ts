@@ -1,44 +1,35 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 import Product from '../products/product.model';
+import { environment } from '../../../../environments/environment';
 
 @Injectable()
 export class ProductService {
-    private products: Product[] = [
-        {
-          id: 100,
-          name: 'Product 01',
-          detail: 'Descripcion...',
-          price: 20.00,
-          stock: 1
-        },
-        {
-          id: 101,
-          name: 'Product 02',
-          detail: 'Descripcion...',
-          price: 30.00,
-          stock: 1
-        }
-      ]
-    constructor() {
+  private baseURL: string = environment.baseUrl;
+  private endpoint: string = 'products';
 
-    }
+  constructor(private http: HttpClient) {}
 
-    getProducts(): Product[] {
-        return this.products;
-    }
+  getProducts() {
+    return this.http.get(`${this.baseURL}${this.endpoint}`);
+  }
 
-    getProduct(id: number): Product {
-      return this.products.filter(product => product.id === id)[0];
-    }
+  getProduct(id: number) {
+    return this.http.get(`${this.baseURL}${this.endpoint}/${id}`);
+  }
 
-    deleteProduct(id: number): boolean {
-        // eliminar product por id
-        this.products = this.products.filter(product => product.id !== id);
-        console.log(this.products);
-        return true;
-    }
+  deleteProduct(id: number) {
+    return this.http.delete(`${this.baseURL}${this.endpoint}/${id}`);
+  }
 
-    updateProduct(product: Product) {
-      
-    }
+  createProduct(product: Product) {
+    const url = `${this.baseURL}${this.endpoint}`;
+    return this.http.post(url, product);
+  }
+
+  updateProduct(product: Product) {
+    const url = `${this.baseURL}${this.endpoint}/${product.id}`;
+    return this.http.put(url, product);
+  }
 }
