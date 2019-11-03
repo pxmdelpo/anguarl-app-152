@@ -1,26 +1,18 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from '@angular/router';
-import { SignInComponent } from './modules/login/sign-in/sign-in.component';
-import { ProductsComponent } from './modules/admin/products/products.component';
-import { ProductNewComponent } from './modules/admin/product-new/product-new.component';
-import { ProductEditComponent } from './modules/admin/product-edit/product-edit.component';
 
+// localhost:3000/
 const routes: Routes = [
     {
         path: 'login',
-        component: SignInComponent
+        // loadChildren: './modules/login/login.module#LoginModule'
+        loadChildren: () =>
+            import('./modules/login/login.module').then(m => m.LoginModule)
     },
     {
         path: 'admin',
-        component: ProductsComponent
-    },
-    {
-        path: 'admin/products/new',
-        component: ProductNewComponent
-    },
-    {
-        path: 'admin/products/:id',
-        component: ProductEditComponent
+        loadChildren: () =>
+            import('./modules/admin/admin.module').then(m => m.AdminModule)
     },
     {
         path: '',
