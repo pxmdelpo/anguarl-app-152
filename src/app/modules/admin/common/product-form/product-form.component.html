@@ -4,22 +4,42 @@
             <form [formGroup]="productForm" (submit)="onSubmit($event)" action="" novalidate autocomplete="off">
                 <div class="field">
                     <div class="control">
-                        <input formControlName="name" class="input" type="text" placeholder="Nombre (min. 6 caracteres)" />
+                        <input formControlName="name" class="input"
+                            [class.is-danger]="productForm.controls.name.invalid && productForm.controls.name.touched"
+                            type="text" placeholder="Nombre (min. 6 caracteres)" />
+                        <p class="help is-danger" *ngIf="productForm.controls.name.invalid && productForm.controls.name.touched">
+                            El nombre es requerido, debe contener al menos 6 caracteres
+                        </p>
                     </div>
                 </div>
                 <div class="field">
                     <div class="control">
-                        <textarea formControlName="detail" class="textarea" type="text" placeholder="Detalle (min. 15 caracteres)"></textarea>
+                        <textarea formControlName="detail"
+                            [class.is-danger]="productForm.controls.detail.invalid && productForm.controls.detail.touched"
+                            class="textarea" type="text" placeholder="Detalle (min. 15 caracteres)"></textarea>
+                        <p class="help is-danger" *ngIf="productForm.controls.detail.invalid && productForm.controls.detail.touched">
+                            El detalle es requerido, debe contener al menos 15 caracteres
+                        </p>
                     </div>
                 </div>
                 <div class="field">
                     <div class="control">
-                        <input formControlName="price" class="input" type="text" placeholder="Pecio: ej. 15.99" />
+                        <input formControlName="price"
+                            [class.is-danger]="productForm.controls.price.invalid && productForm.controls.price.touched"
+                            class="input" type="text" placeholder="Pecio: ej. 15.99" />
+                        <p class="help is-danger" *ngIf="productForm.controls.price.invalid && productForm.controls.price.touched">
+                            El precio es requerido, debe ser númerico mayor a 1 y máximo 2 decimales.
+                        </p>
                     </div>
                 </div>
                 <div class="field">
                     <div class="control">
-                        <input formControlName="stock" class="input" type="text" placeholder="Stock: ej. 5" />
+                        <input formControlName="stock"
+                            [class.is-danger]="productForm.controls.stock.invalid && productForm.controls.stock.touched"
+                            class="input" type="text" placeholder="Stock: ej. 5" />
+                        <p class="help is-danger" *ngIf="productForm.controls.stock.invalid && productForm.controls.stock.touched">
+                            El stock es requerido, debe ser númerico y mayor o igual a 0
+                        </p>
                     </div>
                 </div>
                 <div class="field is-grouped is-grouped-centered">

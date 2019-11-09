@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import Product from '../../products/product.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-product-form',
@@ -13,7 +14,7 @@ export class ProductFormComponent implements OnInit {
   @Input() model: Product;
   @Output() completedform: EventEmitter<Product> = new EventEmitter<Product>();
 
-  constructor() { }
+  constructor(private location: Location) { }
 
   ngOnInit() {
     this.productForm = new FormGroup({
@@ -35,12 +36,20 @@ export class ProductFormComponent implements OnInit {
   }
 
   onSubmit(e) {
-    const { value } = this.productForm;
-    this.completedform.emit(value);
+    const { value, valid } = this.productForm;
+
+    if (valid) {
+      if (this.model.id) {
+        value.id = this.model.id;
+      }
+
+      value.price = parseFloat(value.price);
+      value.stock = parseInt(value.stock, 10);
+      this.completedform.emit(value);
+    }
   }
 
   onBack() {
-    
+    this.location.back();
   }
-
 }

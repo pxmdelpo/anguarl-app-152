@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import Product from '../products/product.model';
 
@@ -14,6 +14,7 @@ export class ProductEditComponent implements OnInit {
 
   constructor(
     private router: ActivatedRoute,
+    private routing: Router,
     private produdctService: ProductService
   ) { }
 
@@ -27,7 +28,7 @@ export class ProductEditComponent implements OnInit {
 
   onUpdate(e) {
     this.produdctService.updateProduct(e).subscribe(response => {
-       
+       this.routing.navigate(['/admin/products']);
     });
   }
 
