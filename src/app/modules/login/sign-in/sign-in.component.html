@@ -7,6 +7,7 @@
             </div>
         </div>
         <form action="" novalidate autocomplete="off" #loginForm="ngForm">
+            <pre>{{ loginForm.value | json }}</pre>
             <div class="field">
                 <label class="label">Usuario</label>
                 <div class="control">

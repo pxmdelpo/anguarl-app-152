@@ -12,4 +12,8 @@ export class ProductNewComponent implements OnInit {
   ngOnInit() {
   }
 
+  onCreate(e) {
+
+  }
+
 }

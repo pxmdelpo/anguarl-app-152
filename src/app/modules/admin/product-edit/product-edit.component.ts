@@ -25,4 +25,10 @@ export class ProductEditComponent implements OnInit {
       });
   }
 
+  onUpdate(e) {
+    this.produdctService.updateProduct(e).subscribe(response => {
+       
+    });
+  }
+
 }

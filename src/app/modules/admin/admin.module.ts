@@ -9,6 +9,8 @@ import { ProductNewComponent } from './product-new/product-new.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
 import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
+import { ProductFormComponent } from './common/product-form/product-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const components = [
   HeaderComponent,
@@ -16,6 +18,7 @@ const components = [
   ProductsComponent,
   ProductNewComponent,
   ProductEditComponent,
+  ProductFormComponent,
   AdminComponent
 ];
 
@@ -23,6 +26,7 @@ const components = [
   declarations: [...components],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     AdminRoutingModule
   ],
   exports: [...components],

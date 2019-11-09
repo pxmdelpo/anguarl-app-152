@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from '@angular/router';
 
-// localhost:3000/
+// localhost:3000/login
 const routes: Routes = [
     {
         path: 'login',
