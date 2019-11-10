@@ -15,10 +15,10 @@
         <div class="navbar-end">
             <div class="navbar-item">
                 <span style="margin: 0 1.3em;">
-                  Manuel Del Pozo
+                  {{ user.name }} {{ user.surname }}
                 </span>
                 <div class="buttons">
-                    <a class="button is-small is-info">
+                    <a class="button is-small is-info" (click)="onClick()">
                         <span>
                             Cerrar Sesión
                         </span>

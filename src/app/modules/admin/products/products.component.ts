@@ -22,6 +22,10 @@ export class ProductsComponent implements OnInit {
       });
   }
 
+  ngOnDestroy() {
+    
+  }
+
   removeProduct(id: number) {
     this.productService.deleteProduct(id).subscribe(() => {
       this.products = this.products.filter(prod => prod.id !== id);

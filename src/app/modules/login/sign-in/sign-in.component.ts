@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../shared/services/auth.services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -7,8 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignInComponent implements OnInit {
   model: any;
+  error: string;
+  isLoading: boolean
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private routing: Router
+  ) { }
 
   ngOnInit() {
     this.model = {
@@ -19,6 +26,24 @@ export class SignInComponent implements OnInit {
 
   onClick(e) {
     e.preventDefault();
-    console.log(this.model);
+    this.isLoading = true;
+    const { email, password } = this.model;
+
+    this.authService.login(email, password).subscribe(response => {
+      this.isLoading = false;
+
+      if (response.success) {
+        this.routing.navigate(['/admin']);
+      } else {
+        this.error = 'Usuario y/o contraseña son erroneas.';
+        this.hideError();
+      }
+    });
+  }
+
+  hideError() {
+    setTimeout(() => {
+      this.error = '';
+    }, 3000);
   }
 }

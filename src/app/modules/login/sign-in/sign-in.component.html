@@ -7,7 +7,6 @@
             </div>
         </div>
         <form action="" novalidate autocomplete="off" #loginForm="ngForm">
-            <pre>{{ loginForm.value | json }}</pre>
             <div class="field">
                 <label class="label">Usuario</label>
                 <div class="control">
@@ -30,8 +29,11 @@
                 </div>
             </div>
             <div class=" field has-text-centered ">
+                <p class="help is-danger" *ngIf="error">
+                    {{ error }}
+                </p>
                 <button type="button" [disabled]="loginForm.invalid"
-                    (click)="onClick($event)" class="button is-dark" style="margin-top: 10px; ">Ingresar</button>
+                    [class.is-loading]="isLoading" (click)="onClick($event)" class="button is-dark" style="margin-top: 10px; ">Ingresar</button>
             </div>
         </form>
     </div>

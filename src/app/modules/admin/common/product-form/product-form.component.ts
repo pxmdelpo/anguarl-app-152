@@ -28,7 +28,7 @@ export class ProductFormComponent implements OnInit {
         Validators.required, Validators.min(1),
         Validators.pattern(/^\d+(\.\d{1,2})?$/)
       ]),
-      stock: new FormControl(this.model.stock || '', [
+      stock: new FormControl(this.model.stock || 0, [
         Validators.required, Validators.min(0),
         Validators.pattern(/^\d+$/)
       ])
